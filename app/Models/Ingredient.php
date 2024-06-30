@@ -37,4 +37,13 @@ class Ingredient extends Model
     }
 
     #endregion
+
+
+    /**
+     * Notify the merchant if the stock is below 50% and not already notified.
+     */
+    public function checkAndNotifyLowStock()
+    {
+        // TODO: Implement the logic to check if the stock is below 50% and notify the merchant
+    }
 }
