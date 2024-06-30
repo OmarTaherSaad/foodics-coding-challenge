@@ -1,66 +1,227 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Foodics Backend Coding Challenge
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This is a mini backend application that's going to manage the orders, products, and ingredients of Foodics. It shall be able to add orders to inventory levels for products, decrement inventory levels upon order creation, and send out a notification whenever the stock level reaches a threshold value for an ingredient.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Setup Instructions
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Prerequisites
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   PHP 8.1+
+-   Composer
+-   MySQL or any other supported database
 
-## Learning Laravel
+#### Database Character Set and Collation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+I used the utf8mb4 character set along with the utf8mb4_unicode_ci collation for our database to ensure good support for most characters and languages.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+##### Why utf8mb4 and utf8mb4_unicode_ci?
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Full Unicode Support: Stores all Unicode characters from Emojis to special symbols.
 
-## Laravel Sponsors
+Case Insensitivity: String comparisons are case-insensitive improving the user experience.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Multi-language Compatibility: Virtually all languages are supported—ensuring consistent behavior across an application.
 
-### Premium Partners
+Such settings enable our application to recognize most characters and languages.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Installation
 
-## Contributing
+1.  **Clone the repository:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    sh
+    Copy code
+    `git clone https://github.com/OmarTaherSaad/foodics-coding-challenge`
 
-## Code of Conduct
+2.  **Navigate to the project directory:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+        sh
 
-## Security Vulnerabilities
+    Copy code
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        `cd foodics-coding-challenge`
 
-## License
+3.  **Install dependencies:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    sh
+
+    Copy code
+
+    `composer install`
+
+4.  **Copy the `.env.example` file to `.env` and configure your environment variables:**
+
+    sh
+
+    Copy code
+
+    ` cp .env.example .env`
+
+    - Set your database credential
+
+-   Set the `MERCHANT_EMAIL` to the email address where notifications should be sent
+
+5. **Generate an application key:**
+
+    sh
+
+    Copy code
+
+    `php artisan key:generate`
+
+6. **Run the migrations and seed the database:**
+   sh
+    Copy code
+
+`php artisan migrate --seed`
+
+
+
+### Run the Application
+
+To set up the application locally, you should run it in PHP's built-in HTTP development server. To do this, execute the following command:
+
+sh
+
+Copy code
+
+`php artisan serve`
+
+
+
+## Running Tests
+
+### Unit Tests
+
+They correspond to tests for individual components such as models, services, or controllers.
+
+
+
+### Feature Tests
+
+It has feature tests that cover end-to-end scenarios to ensure that the application works.
+
+### Run the Test Suite
+
+To run the complete test suite:
+
+sh
+Copy code
+
+`php artisan test`
+
+## API Documentation
+
+### Create Order
+
+**Endpoint:**
+
+bash
+Copy code
+
+`POST /api/orders`
+**Request Body:**
+
+json
+Copy code
+
+`{
+
+"products": [
+{
+"product_id": "uuid-of-product",
+"quantity": 1
+}
+]
+}`
+**Response:**
+
+-   **Success:**
+    json  
+      
+    Copy code
+     
+    `{ 
+      "success": true, 
+      "message": "Order placed successfully", 
+      "order": { 
+         "id": "uuid-of-order", 
+         "created_at": "2023-12-01T12:00:00.000000Z",
+"products": [
+          {
+            "id": "uuid-of-product",
+            "name": "Product Name",
+            "quantity": 1
+mutable ?
+        ]
+      }
+    }
+`
+
+-   **Error (Product not found):**
+        json
+
+        Copy code
+
+        `
+    "success": false,
+    "error": "Product not found: uuid-of-product"
+    }`
+-   **Error (Insufficient stock):**
+        json
+
+        Copy code
+
+        `{
+          "success": false,
+    "error": "Insufficient stock for ingredient: Ingredient Name"
+    }
+    `
+
+## Project Structure
+
+### Models
+
+-   **Order**: This is an order.
+
+-   **Product**: This is a product.
+
+-   **Ingredient**: This is an ingredient that goes into products.
+
+### Services
+
+-   **OrderService**: Encapsulates all business logic related to processing orders.
+
+-   **OrderController**: This handles the creation of orders and interacts with the `OrderService`.
+
+### Notifications
+
+-   **IngredientLowStockNotification**: This sends an email notification whenever an ingredient's stock falls below 50%.
+
+## Assumptions and Decisions
+
+-   **Stock Levels**: The stock levels for ingredients are stored in grams.
+
+-   **Notification**: A notification will be sent to the merchant's email when the stock of any ingredient reaches below 50% of its default stock.
+-   **UUIDS**: All primary keys are UUIDs for uniqueness and scalability.
+
+## Security Considerations
+
+-   **Validation and Sanitization**: All inputs are validated and sanitized to prevent security vulnerabilities.
+
+-   **Environment Variables**: Storing sensitive data within environment variables.
+
+## Performance Optimizations
+
+-   **Eager Loading**: The use of eager loading avoids the N+1 problem, thus optimizes database queries.
+
+-   **Caching**: Proper places implemented to decrease load over databases and improve response times.
+
+## Contact
+
+In case of questions or problems please contact:
+
+-   **Full Name**: Omar Taher Saad
+
+-   **Email**: omartahersaad@outlook.com
