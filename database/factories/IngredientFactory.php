@@ -20,6 +20,7 @@ class IngredientFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'default_stock_in_grams' => $this->faker->numberBetween(1000, 20000), // 1kg to 20kg
             'stock_in_grams' => $this->faker->numberBetween(1000, 20000), // 1kg to 20kg
             'restock_needed' => false,
             'notified_for_restock_sent' => false,

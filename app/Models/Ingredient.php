@@ -18,6 +18,7 @@ class Ingredient extends Model
      */
     protected $fillable = [
         'name',
+        'default_stock_in_grams',
         'stock_in_grams',
         'restock_needed',
         'notified_for_restock_sent',

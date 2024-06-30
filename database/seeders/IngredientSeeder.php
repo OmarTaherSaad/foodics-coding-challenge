@@ -15,9 +15,21 @@ class IngredientSeeder extends Seeder
     public function run(): void
     {
         // Create ingredients
-        $beef = Ingredient::factory()->create(['name' => 'Beef', 'stock_in_grams' => 20000]); // 20kg
-        $cheese = Ingredient::factory()->create(['name' => 'Cheese', 'stock_in_grams' => 5000]); // 5kg
-        $onion = Ingredient::factory()->create(['name' => 'Onion', 'stock_in_grams' => 1000]); // 1kg
+        $beef = Ingredient::factory()->create([
+            'name' => 'Beef',
+            'default_stock_in_grams' => 20000, // 20kg
+            'stock_in_grams' => 20000 // 20kg
+        ]);
+        $cheese = Ingredient::factory()->create([
+            'name' => 'Cheese',
+            'default_stock_in_grams' => 5000, // 5kg
+            'stock_in_grams' => 5000 // 5kg
+        ]);
+        $onion = Ingredient::factory()->create([
+            'name' => 'Onion',
+            'default_stock_in_grams' => 1000, // 1kg
+            'stock_in_grams' => 1000 // 1kg
+        ]);
 
         // Attach ingredients to products
         $burger = Product::where('name', 'Burger')->first();
