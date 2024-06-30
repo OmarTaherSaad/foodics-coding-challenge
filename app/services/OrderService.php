@@ -78,9 +78,9 @@ class OrderService
     protected function updateIngredientStock(Ingredient $ingredient, int $quantity): void
     {
         // Calculate the required amount of the ingredient
-        $requiredAmount = $ingredient->pivot->amount * $quantity;
+        $requiredAmount = $ingredient->pivot->quantity_in_grams * $quantity;
 
-        if ($ingredient->stock < $requiredAmount) {
+        if ($ingredient->stock_in_grams < $requiredAmount) {
             throw new InsufficientStockException($ingredient->name);
         }
 
