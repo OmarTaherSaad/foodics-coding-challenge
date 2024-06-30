@@ -113,4 +113,11 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /**
+     * The address to which the merchant notifications should be sent.
+     * This is used to notify the merchant when an ingredient is low in stock.
+     * This is for demonstration purposes only and should be replaced with a real email address or account.
+     */
+    'merchant_email' => env('MERCHANT_EMAIL', 'default@example.com'),
+
 ];
